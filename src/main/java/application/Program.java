@@ -1,12 +1,13 @@
 package application;
 
-import model.ItemPerdido;
+import model.dao.DaoFactory;
+import model.dao.ItemPerdidoDAO;
 
 public class Program {
 
 	public static void main(String[] args) {
 
-		ItemPerdido obj = new ItemPerdido();
+		ItemPerdidoDAO itemPerdidoDao = DaoFactory.createItemPerdidoDAO();
 
 	}
 
