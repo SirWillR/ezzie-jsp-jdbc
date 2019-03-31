@@ -1,4 +1,4 @@
-package br.com.ezzie;
+package launch;
 
 import java.io.File;
 
