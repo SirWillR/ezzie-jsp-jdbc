@@ -53,12 +53,7 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			if(rs.next()) {
-				ItemPerdido itemPerdido = new ItemPerdido();
-				itemPerdido.setNome(rs.getString("Nome"));
-				itemPerdido.setTipo(rs.getString("TypeName"));
-				itemPerdido.setData(rs.getDate("Data"));
-				itemPerdido.setEstado(rs.getString("UFName"));
-				itemPerdido.setCidade(rs.getString("CityName"));
+				ItemPerdido itemPerdido = instantiateItemPerdido(rs);
 				return itemPerdido;
 			}
 		} catch(SQLException e) {
@@ -68,6 +63,16 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 			DB.closeResultSet(rs);
 		}
 		return null;
+	}
+
+	private ItemPerdido instantiateItemPerdido(ResultSet rs) throws SQLException {
+		ItemPerdido obj = new ItemPerdido();
+		obj.setNome(rs.getString("Nome"));
+		obj.setTipo(rs.getString("TypeName"));
+		obj.setData(rs.getDate("Data"));
+		obj.setEstado(rs.getString("UFName"));
+		obj.setCidade(rs.getString("CityName"));
+		return obj;
 	}
 
 	@Override
