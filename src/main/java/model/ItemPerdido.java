@@ -1,48 +1,25 @@
 package model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
-public class ItemPerdido implements Serializable {
+public class ItemPerdido {
 
-	private static final long serialVersionUID = 1L;
-	
-	private int id;
-	private int userid;
 	private String nome;
-	private int tipo;
-	private int estado;
-	private int cidade;
+	private String tipo;
+	private String estado;
+	private String cidade;
 	private Date data;
 	
 	public ItemPerdido() {
 		
 	}
-
-	public ItemPerdido(int id, int userid, String nome, int tipo, int estado, int cidade, Date data) {
-		this.id = id;
-		this.userid = userid;
+	
+	public ItemPerdido(String nome, String tipo, String estado, String cidade, Date data) {
 		this.nome = nome;
 		this.tipo = tipo;
 		this.estado = estado;
 		this.cidade = cidade;
 		this.data = data;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getUserid() {
-		return userid;
-	}
-
-	public void setUserid(int userid) {
-		this.userid = userid;
 	}
 
 	public String getNome() {
@@ -53,27 +30,27 @@ public class ItemPerdido implements Serializable {
 		this.nome = nome;
 	}
 
-	public int getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(int tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
-	public int getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-	public int getCidade() {
+	public String getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(int cidade) {
+	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
 
@@ -84,33 +61,4 @@ public class ItemPerdido implements Serializable {
 	public void setData(Date data) {
 		this.data = data;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ItemPerdido other = (ItemPerdido) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "ItemPerdido [id=" + id + ", userid=" + userid + ", nome=" + nome + ", tipo=" + tipo + ", estado="
-				+ estado + ", cidade=" + cidade + ", data=" + data + "]";
-	}
-
 }

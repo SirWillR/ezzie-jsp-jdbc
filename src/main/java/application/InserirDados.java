@@ -20,16 +20,17 @@ public class InserirDados {
 			conn = DB.getConnection();
 			st = conn.prepareStatement(
 					"INSERT INTO itemperdido "
-					+ "(Nome, TipoID, EstadoID, CidadeID, Data) "
+					+ "(Nome, UsuarioID, TipoID, EstadoID, CidadeID, Data) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?)",
+					+ "(?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			
 			st.setString(1, "Cachorro");
-			st.setInt(2, 2);
-			st.setInt(3, 11);
-			st.setInt(4, 1630);
-			st.setDate(5, Date.valueOf("2019-03-31"));
+			st.setInt(2, 0001);
+			st.setInt(3, 2);
+			st.setInt(4, 11);
+			st.setInt(5, 1630);
+			st.setDate(6, Date.valueOf("2019-03-31"));
 			
 			int rowsAffected = st.executeUpdate();
 			
