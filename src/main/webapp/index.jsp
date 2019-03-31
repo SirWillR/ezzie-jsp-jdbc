@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html" pageEncoding="UTF-8" import="model.*, model.dao.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,7 +7,13 @@
     </head>
     <body>
         <p>
-			<% out.print("helloworld"); %>
+			<% 
+				ItemPerdidoDAO itemPerdidoDao = DaoFactory.createItemPerdidoDAO();
+			
+				ItemPerdido itemPerdido = itemPerdidoDao.findById(1);
+				
+				out.print(itemPerdido.getNome());
+			%>
         </p>
     </body>
 </html>
