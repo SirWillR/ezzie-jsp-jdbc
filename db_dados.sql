@@ -1,3 +1,5 @@
+INSERT INTO Login (ID, Usuario, Senha, Nome, Email) VALUES (1, 'admin', 'admin', 'Administrador', 'adm@adm.com');
+
 INSERT INTO TipoDeItem (ID, Nome, Descricao) VALUES
 (1, "Documentos Pessoais", NULL),
 (2, "Animais", NULL),
