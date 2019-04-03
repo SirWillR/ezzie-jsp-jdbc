@@ -1,17 +1,15 @@
-INSERT INTO Login (ID, Usuario, Senha, Nome, Email) VALUES (1, 'admin', 'admin', 'Administrador', 'adm@adm.com');
+INSERT INTO Login (ID, Usuario, Senha, Nome, Email, Telefone, RedeSocial) VALUES (1, 'admin', 'admin', 'Administrador', 'adm@adm.com', '(00) 0000-0000', 'facebook.com/user');
 
-INSERT INTO TipoDeItem (ID, Nome, Descricao) VALUES
-(1, "Documentos Pessoais", NULL),
-(2, "Animais", NULL),
-(3, "Celulares", NULL),
-(4, "Veiculos", NULL),
-(5, "Chaves", NULL),
-(6, "Eletronicos", NULL),
-(7, "Joias", NULL),
-(8, "Bolsas", NULL),
-(9, "Roupas", NULL),
-(10, "Pessoas", NULL),
-(11, "Outros", NULL);
+INSERT INTO TipoDeItem (ID, Nome) VALUES
+(1, "Documentos"),
+(2, "Bolsas"),
+(3, "Chaves"),
+(4, "Animais"),
+(5, "Eletronicos"),
+(6, "Outros"),
+(7, "Pequenos"),
+(8, "Roupas"),
+(9, "Veiculos");
 
 INSERT INTO Pais (ID, Nome, Sigla) VALUES (1, 'Brasil', 'BR');
 
