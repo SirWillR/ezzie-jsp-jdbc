@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,19 +25,71 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 
 	@Override
 	public void insert(ItemPerdido obj) {
-
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("INSERT INTO itemperdido (UsuarioID, Nome, TipoID, CidadeID, Data, LocalEncontrado, Prazo) VALUES  (?, ?, ?, ?, ?, ?, ?)", 
+					Statement.RETURN_GENERATED_KEYS);
+			st.setLong(1, obj.getPessoaQueAchou().getIdUsuario());
+			st.setString(2, obj.getNomeItem());
+			st.setLong(3, obj.getTipo().getIdTipo());
+			st.setInt(4, obj.getLocalizacao().getCidade().getId());
+			st.setDate(5, obj.getData());
+			st.setString(6, obj.getLocalEncontrado());
+			st.setInt(7, obj.getPrazo());
+			
+			int rowsAffected = st.executeUpdate();
+			
+			if(rowsAffected > 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				if(rs.next()) {
+					int id = rs.getInt(1);
+					obj.setIdItem(id);
+				}
+				DB.closeResultSet(rs);
+			} else {
+				throw new DbException("Unexpeceted error! No rows affected!");
+			}
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
 	}
 
 	@Override
 	public void update(ItemPerdido obj) {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("UPDATE itemperdido SET UsuarioID = ?, Nome = ?, TipoID = ?, CidadeID = ?, Data = ?, LocalEncontrado = ?, Prazo = ? WHERE ID = ?");
+			st.setLong(1, obj.getPessoaQueAchou().getIdUsuario());
+			st.setString(2, obj.getNomeItem());
+			st.setLong(3, obj.getTipo().getIdTipo());
+			st.setInt(4, obj.getLocalizacao().getCidade().getId());
+			st.setDate(5, obj.getData());
+			st.setString(6, obj.getLocalEncontrado());
+			st.setInt(7, obj.getPrazo());
+			st.setInt(8, obj.getIdItem());
+			
+			st.executeUpdate();
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
 	}
 
 	@Override
 	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE FROM itemperdido WHERE ID = ?");
+			st.setInt(1, id);
+			st.executeUpdate();
+		} catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
 	}
 
 	@Override
@@ -45,7 +98,7 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 		ResultSet rs = null;
 		
 		try {
-			st = conn.prepareStatement("SELECT itemperdido.* FROM itemperdido WHERE itemperdido.ID = ?");
+			st = conn.prepareStatement("SELECT * FROM itemperdido WHERE itemperdido.ID = ? ORDER BY Data");
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			if(rs.next()) {
@@ -71,7 +124,7 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 		List<ItemPerdido> list = new ArrayList<>();
 		
 		try {
-			st = conn.prepareStatement("SELECT itemperdido.* FROM itemperdido");
+			st = conn.prepareStatement("SELECT * FROM itemperdido ORDER BY Data");
 			rs = st.executeQuery();
 			
 			Map<Integer, Usuario> mapUser = new HashMap<>();
