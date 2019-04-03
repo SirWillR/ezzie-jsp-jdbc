@@ -4,54 +4,63 @@ import java.sql.Date;
 
 public class ItemPerdido {
 
-	private String nome;
-	private String tipo;
-	private String estado;
-	private String cidade;
+	private int idItem;
+	private String nomeItem;
+	private TipoDeItem tipo;
+	private Cidade cidade;
+	private Estado estado;
+	private Pais pais;
 	private Date data;
+	private String localEncontrado;
+	private int prazo;
+	private Usuario pessoaQueAchou;
 	
-	public ItemPerdido() {
-		
-	}
-	
-	public ItemPerdido(String nome, String tipo, String estado, String cidade, Date data) {
-		this.nome = nome;
-		this.tipo = tipo;
-		this.estado = estado;
-		this.cidade = cidade;
-		this.data = data;
+	public int getIdItem() {
+		return idItem;
 	}
 
-	public String getNome() {
-		return nome;
+	public void setIdItem(int idItem) {
+		this.idItem = idItem;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public String getNomeItem() {
+		return nomeItem;
 	}
 
-	public String getTipo() {
+	public void setNomeItem(String nomeItem) {
+		this.nomeItem = nomeItem;
+	}
+
+	public TipoDeItem getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoDeItem tipo) {
 		this.tipo = tipo;
 	}
 
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getCidade() {
+	public Cidade getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(String cidade) {
+	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
 	}
 
 	public Date getData() {
@@ -61,4 +70,29 @@ public class ItemPerdido {
 	public void setData(Date data) {
 		this.data = data;
 	}
+
+	public String getLocalEncontrado() {
+		return localEncontrado;
+	}
+
+	public void setLocalEncontrado(String localEncontrado) {
+		this.localEncontrado = localEncontrado;
+	}
+
+	public int getPrazo() {
+		return prazo;
+	}
+
+	public void setPrazo(int prazo) {
+		this.prazo = prazo;
+	}
+
+	public Usuario getPessoaQueAchou() {
+		return pessoaQueAchou;
+	}
+
+	public void setPessoaQueAchou(Usuario pessoaQueAchou) {
+		this.pessoaQueAchou = pessoaQueAchou;
+	}
+
 }

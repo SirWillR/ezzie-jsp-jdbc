@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.DB;
@@ -21,8 +22,7 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 
 	@Override
 	public void insert(ItemPerdido obj) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -77,8 +77,29 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 
 	@Override
 	public List<ItemPerdido> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		List<ItemPerdido> list = new ArrayList<>();
+		
+		try {
+			st = conn.prepareStatement(
+					"SELECT itemperdido.Nome, itemperdido.Data, tipodeitem.Nome as TypeName, estado.Nome as UFName, cidade.Nome as CityName "
+					+ "FROM itemperdido "
+					+ "INNER JOIN tipodeitem ON itemperdido.TipoID = tipodeitem.ID "
+					+ "INNER JOIN estado ON itemperdido.EstadoID = estado.ID "
+					+ "INNER JOIN cidade ON itemperdido.CidadeID = cidade.ID ");
+			rs = st.executeQuery();
+			while(rs.next()) {
+				ItemPerdido itemPerdido = instantiateItemPerdido(rs);
+				list.add(itemPerdido);
+			}
+			return list;
+		} catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 
 }

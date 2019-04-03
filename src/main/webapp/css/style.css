@@ -1,0 +1,54 @@
+.loader {
+	background-image: url("../img/Ezzie.png");
+	width: 235px;
+	height: 284px;
+	-webkit-animation: into 1.5s 1;
+	        animation: into 1.5s 1;
+	position: relative;
+}
+
+.loader-bg {
+	background-image: url("../img/back.jpg");
+	background-repeat: repeat;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+@-webkit-keyframes into {
+	0% { -webkit-transform: scale3d(0.3,0.3,0.3); }
+	100% { -webkit-transform: scale3d(1,1,1); }
+}
+
+@keyframes into {
+	0% { transform: scale3d(0.3,0.3,0.3); }
+	100% { transform: scale3d(1,1,1); }
+}
+
+.outer {
+	display: table;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 1;
+	-webkit-transition: opacity 1.5s linear 1.5s;
+	-o-transition: opacity 1.5s linear 1.5s;
+	transition: opacity 1.5s linear 1.5s;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.middle {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.inner {
+	margin-left: auto;
+	margin-right: auto;
+	width: 235px;
+}
