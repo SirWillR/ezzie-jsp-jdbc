@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ItemPerdido {
 
-	private int idItem;
+	private long idItem;
 	private String nomeItem;
 	private TipoDeItem tipo;
 	private Localizacao localizacao;
@@ -13,10 +13,10 @@ public class ItemPerdido {
 	private int prazo;
 	private Usuario pessoaQueAchou;
 	
-	public int getIdItem() {
+	public long getIdItem() {
 		return idItem;
 	}
-	public void setIdItem(int idItem) {
+	public void setIdItem(long idItem) {
 		this.idItem = idItem;
 	}
 	public String getNomeItem() {

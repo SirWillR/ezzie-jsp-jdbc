@@ -68,7 +68,7 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 			st.setDate(5, obj.getData());
 			st.setString(6, obj.getLocalEncontrado());
 			st.setInt(7, obj.getPrazo());
-			st.setInt(8, obj.getIdItem());
+			st.setLong(8, obj.getIdItem());
 			
 			st.executeUpdate();
 		} catch (SQLException e) {
@@ -83,7 +83,7 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement("DELETE FROM itemperdido WHERE ID = ?");
-			st.setInt(1, id);
+			st.setLong(1, id);
 			st.executeUpdate();
 		} catch(SQLException e) {
 			throw new DbException(e.getMessage());
@@ -98,8 +98,8 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 		ResultSet rs = null;
 		
 		try {
-			st = conn.prepareStatement("SELECT * FROM itemperdido WHERE itemperdido.ID = ? ORDER BY Data");
-			st.setInt(1, id);
+			st = conn.prepareStatement("SELECT * FROM itemperdido WHERE ID = ? ORDER BY Data");
+			st.setLong(1, id);
 			rs = st.executeQuery();
 			if(rs.next()) {
 				Usuario usuario = instantiateUsuario(rs);
@@ -164,7 +164,7 @@ public class ItemPerdidoJDBC implements ItemPerdidoDAO {
 
 	private ItemPerdido instantiateItemPerdido(ResultSet rs, TipoDeItem tipo, Localizacao local, Usuario usuario) throws SQLException {
 		ItemPerdido obj = new ItemPerdido();
-		obj.setIdItem(rs.getInt("ID"));
+		obj.setIdItem(rs.getLong("ID"));
 		obj.setNomeItem(rs.getString("Nome"));
 		obj.setTipo(tipo);
 		obj.setLocalizacao(local);

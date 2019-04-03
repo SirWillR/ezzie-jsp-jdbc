@@ -2,14 +2,14 @@ package model;
 
 public class TipoDeItem {
 	
-	private long idTipo;
+	private int idTipo;
 	private String nome;
 	private String detalhes;
 	
-	public long getIdTipo() {
+	public int getIdTipo() {
 		return idTipo;
 	}
-	public void setIdTipo(long idTipo) {
+	public void setIdTipo(int idTipo) {
 		this.idTipo = idTipo;
 	}
 	public String getNome() {
