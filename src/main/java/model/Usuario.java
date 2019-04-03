@@ -10,6 +10,20 @@ public class Usuario {
 	private String telefone;
 	private String redeSocial;
 	
+	public Usuario() {
+		
+	}
+	
+	public Usuario(long idUsuario, String usuario, String senha, String nome, String email, String telefone, String redeSocial) {
+		this.idUsuario = idUsuario;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.redeSocial = redeSocial;
+	}
+	
 	public long getIdUsuario() {
 		return idUsuario;
 	}
