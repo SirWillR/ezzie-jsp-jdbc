@@ -6,7 +6,7 @@
 		type="text/javascript"></script>
 	<!--  Google Maps Plugin  -->
 	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ&libraries=places"></script>
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvFzXTXJvq3He05RTDYqoQaOSpoULi-Qg&libraries=places"></script>
 	<script
 		src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 	<!-- Place this tag in your head or just before your close body tag. -->

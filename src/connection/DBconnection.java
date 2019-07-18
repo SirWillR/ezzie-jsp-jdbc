@@ -19,7 +19,7 @@ public class DBconnection {
 		Properties props = new Properties();
 		props.put("url", "jdbc:mysql://localhost:3306/ezzie");
 		props.put("user", "root");
-		props.put("password", "admin");
+		props.put("password", "");
 		props.put("useTimezone", "true");
 		props.put("serverTimezone", "UTC");
 		props.put("autoReconnect", "true");
