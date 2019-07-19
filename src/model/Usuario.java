@@ -1,14 +1,24 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+@Entity
 public class Usuario {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String login;
 	private String senha;
 	private String nome;
 	private String telefone;
 	private String email;
-	
 	private String fotoBase64Mini;
+	
+	@Transient
 	private boolean atualizarFoto;
 	
 	public Long getId() {

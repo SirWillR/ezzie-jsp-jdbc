@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import model.Usuario;
 import connection.DBconnection;
+import connection.HbernateUtil;
 
 @WebFilter(urlPatterns = {"/cadastrarObjeto.jsp", "/perfil.jsp"})
 public class Filter implements javax.servlet.Filter {
@@ -51,5 +52,6 @@ public class Filter implements javax.servlet.Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		conn = DBconnection.getConnection();
+		HbernateUtil.getEntityManager();
 	}
 }

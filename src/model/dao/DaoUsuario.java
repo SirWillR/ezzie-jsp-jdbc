@@ -18,7 +18,7 @@ public class DaoUsuario {
 
 	public Long salvar(Usuario usuario) {
 		try {
-			String sql = "insert into usuarios (login, senha, nome, telefone, email, fotoBase64Mini) "
+			String sql = "insert into usuario (login, senha, nome, telefone, email, fotoBase64Mini) "
 					+ "values (?, ?, ?, ?, ?, ?)";
 			PreparedStatement st = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			st.setString(1, usuario.getLogin());
@@ -46,7 +46,7 @@ public class DaoUsuario {
 	
 	public void delete(String id) {
 		try {
-			String sql = "delete from usuarios where id = '" + id + "' and login <> 'admin'";
+			String sql = "delete from usuario where id = '" + id + "' and login <> 'admin'";
 			PreparedStatement st;
 			st = conn.prepareStatement(sql);
 			st.execute();
@@ -62,7 +62,7 @@ public class DaoUsuario {
 	}
 
 	public Usuario consultar(String id) throws Exception {
-		String sql = "select * from usuarios where id = '" + id + "'";
+		String sql = "select * from usuario where id = '" + id + "'";
 		PreparedStatement st = conn.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		if(rs.next()) {
@@ -81,7 +81,7 @@ public class DaoUsuario {
 	
 	public void atualizar(Usuario usuario) {
 		try {
-			String sql = "update usuarios set login = ?, senha = ?, nome = ?, telefone = ?, email = ?";
+			String sql = "update usuario set login = ?, senha = ?, nome = ?, telefone = ?, email = ?";
 			if(usuario.isAtualizarFoto())
 				sql += "fotoBase64Mini = ? ";
 			sql += " where id = " + usuario.getId();
@@ -109,7 +109,7 @@ public class DaoUsuario {
 	
 	// verifica se o login está disponível na hora de registrar
 	public boolean verificarLogin(String login) throws Exception {
-		String sql = "select count(1) as qtd from usuarios where login = '" + login + "'";
+		String sql = "select count(1) as qtd from usuario where login = '" + login + "'";
 		PreparedStatement st = conn.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		if(rs.next()) {

@@ -15,7 +15,7 @@ public class DaoLogin {
 	
 	// valida o login para acesso ao sistema
 	public Long validarLogin(String login, String senha) throws Exception {
-		String sql = "select * from usuarios where login = '" + login + "' and senha = '" + senha + "'";
+		String sql = "select * from usuario where login = '" + login + "' and senha = '" + senha + "'";
 		PreparedStatement st = conn.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		if(rs.next()) {

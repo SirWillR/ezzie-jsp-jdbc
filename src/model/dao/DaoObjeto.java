@@ -20,7 +20,7 @@ public class DaoObjeto {
 
 	public Long salvar(Objeto objeto) {
 		try {
-			String sql = "insert into objetos (titulo, descricao, tipo, situacao, cidade, uf, latLng, imagem, userId) "
+			String sql = "insert into objeto (titulo, descricao, tipo, situacao, cidade, uf, latLng, imagem, userId) "
 					+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement st = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			st.setString(1, objeto.getTitulo());
@@ -51,7 +51,7 @@ public class DaoObjeto {
 	
 	public void delete(String id) {
 		try {
-			String sql = "delete from objetos where id = '" + id + "'";
+			String sql = "delete from objeto where id = '" + id + "'";
 			PreparedStatement st;
 			st = conn.prepareStatement(sql);
 			st.execute();
@@ -67,7 +67,7 @@ public class DaoObjeto {
 	}
 
 	public Objeto consultar(String id) throws Exception {
-		String sql = "select * from objetos where id = '" + id + "'";
+		String sql = "select * from objeto where id = '" + id + "'";
 		PreparedStatement st = conn.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		if(rs.next()) {
@@ -88,7 +88,7 @@ public class DaoObjeto {
 	}
 	
 	public List<Objeto> listar(String id) throws Exception {
-		String sql = "select * from objetos where userId = '" + id + "'";
+		String sql = "select * from objeto where userId = '" + id + "'";
 		List<Objeto> lista = new ArrayList<Objeto>();
 		PreparedStatement st = conn.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
@@ -110,7 +110,7 @@ public class DaoObjeto {
 	}
 	
 	public List<Objeto> listarMarker(String cidade, String uf, String situacao, String tipo) throws Exception {
-		String sql = "select id, titulo, descricao, latLng, imagem from objetos where "
+		String sql = "select id, titulo, descricao, latLng, imagem from objeto where "
 				+ "cidade = '" + cidade + "' and uf = '" + uf + "' and situacao = '" + situacao + "' and tipo = '" + tipo + "'";
 		List<Objeto> lista = new ArrayList<Objeto>();
 		PreparedStatement st = conn.prepareStatement(sql);
@@ -128,7 +128,7 @@ public class DaoObjeto {
 	}
 	
 	public List<Objeto> listarEstados(String situacao) throws Exception {
-		String sql = "select distinct uf from objetos where situacao = '" + situacao + "'";
+		String sql = "select distinct uf from objeto where situacao = '" + situacao + "'";
 		PreparedStatement st = conn.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		List<Objeto> lista = new ArrayList<Objeto>();
@@ -141,7 +141,7 @@ public class DaoObjeto {
 	}
 	
 	public List<Objeto> listarCidades(String uf, String situacao) throws Exception {
-		String sql = "select distinct cidade from objetos where uf = '" + uf + "' and situacao = '" + situacao + "'";
+		String sql = "select distinct cidade from objeto where uf = '" + uf + "' and situacao = '" + situacao + "'";
 		PreparedStatement st = conn.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		List<Objeto> lista = new ArrayList<Objeto>();
@@ -154,7 +154,7 @@ public class DaoObjeto {
 	}
 	
 	public List<Objeto> listarTipos(String uf, String cidade, String situacao) throws Exception {
-		String sql = "select distinct tipo from objetos where uf = '" + uf + "' and cidade = '" + cidade + "' and situacao = '" + situacao + "'";
+		String sql = "select distinct tipo from objeto where uf = '" + uf + "' and cidade = '" + cidade + "' and situacao = '" + situacao + "'";
 		PreparedStatement st = conn.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		List<Objeto> lista = new ArrayList<Objeto>();
@@ -168,7 +168,7 @@ public class DaoObjeto {
 
 	public void atualizar(Objeto objeto) {
 		try {
-			String sql = "update objetos set titulo = ?, descricao = ?, tipo = ?, situacao = ?"
+			String sql = "update objeto set titulo = ?, descricao = ?, tipo = ?, situacao = ?"
 					+ ", cidade = ?, uf = ?, latLng = ?, imagem = ?, userId = ?  where id = " + objeto.getId();
 			
 			PreparedStatement st = conn.prepareStatement(sql);
