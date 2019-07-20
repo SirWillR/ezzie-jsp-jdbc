@@ -23,6 +23,11 @@ public class Filter implements javax.servlet.Filter {
 	private static Connection conn;
 	
 	@Override
+	public void destroy() {
+		javax.servlet.Filter.super.destroy();
+	}
+	
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		try {
