@@ -1,14 +1,17 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Objeto {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+public class Objeto implements Serializable {
+	
+	private static final long serialVersionUID = -5382201765167773556L;
+	
 	private Long id;
 	private String titulo;
 	private String descricao;
@@ -20,6 +23,8 @@ public class Objeto {
 	private String imagem;
 	private Long userId;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}

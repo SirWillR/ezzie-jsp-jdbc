@@ -1,15 +1,19 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Transient;
 
 @Entity
-public class Usuario {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+public class Usuario implements Serializable {
+	
+	private static final long serialVersionUID = -3709112848005496965L;
+
 	private Long id;
 	private String login;
 	private String senha;
@@ -17,10 +21,10 @@ public class Usuario {
 	private String telefone;
 	private String email;
 	private String fotoBase64Mini;
+	private Boolean atualizarFoto;
 	
-	@Transient
-	private boolean atualizarFoto;
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -51,13 +55,15 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	@Lob
 	public String getFotoBase64Mini() {
 		return fotoBase64Mini;
 	}
 	public void setFotoBase64Mini(String fotoBase64Mini) {
 		this.fotoBase64Mini = fotoBase64Mini;
 	}
-	public boolean isAtualizarFoto() {
+	@Transient
+	public boolean getAtualizarFoto() {
 		return atualizarFoto;
 	}
 	public void setAtualizarFoto(boolean atualizarFoto) {

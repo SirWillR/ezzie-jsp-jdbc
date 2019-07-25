@@ -82,7 +82,7 @@ public class DaoUsuario {
 	public void atualizar(Usuario usuario) {
 		try {
 			String sql = "update usuario set login = ?, senha = ?, nome = ?, telefone = ?, email = ?";
-			if(usuario.isAtualizarFoto())
+			if(usuario.getAtualizarFoto())
 				sql += "fotoBase64Mini = ? ";
 			sql += " where id = " + usuario.getId();
 			
@@ -92,7 +92,7 @@ public class DaoUsuario {
 			st.setString(3, usuario.getNome());
 			st.setString(4, usuario.getTelefone());
 			st.setString(5, usuario.getEmail());
-			if(usuario.isAtualizarFoto()) {
+			if(usuario.getAtualizarFoto()) {
 				st.setString(6, usuario.getFotoBase64Mini());
 			}
 			st.executeUpdate();
